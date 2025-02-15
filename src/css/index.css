@@ -186,6 +186,7 @@
   transform: rotate(45deg);
   animation: rotate 2s linear infinite;
   box-shadow: gray, 10px 10px;
+  border: #0085FF solid 3px;
 }
 .loader:before {
   content: "";
