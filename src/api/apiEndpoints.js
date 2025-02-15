@@ -12,6 +12,7 @@ const apiEndpoints = {
   getUsers: "api/users",
   createWorker: "api/users/worker",
   deleteUser: (id) => `api/users/${id}`,
+  upadteUser: (id) => `api/users/${id}`,
 
   // News
   getNews: "api/news",
@@ -39,6 +40,7 @@ const apiEndpoints = {
   // Images
   deleteImage: (id) => `files/${id}`,
   uploadProductImage: "files/upload/product",
+  uploadProfileImage: "files/upload/profile",
 
   // Comments
   getComments: "api/comments",

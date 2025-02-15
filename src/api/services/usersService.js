@@ -13,6 +13,14 @@ const userService = {
     }
   },
 
+  updateUser: async (id, data) =>{
+    try {
+      return await api.put(endpoints.upadteUser(id), data )
+    } catch (err) {
+      throw err
+    }
+  },
+
   logout: async () => {
     try {
       return await api.post(endpoints.logout);

@@ -5,9 +5,11 @@ import api from "../axiosConfig";
 import endpoints from "../apiEndpoints";
 
 const imageService = {
-  logout: async () => {
+  uploadProfile: async (file) => {
     try {
-      return await api.post(endpoints.logout);
+      return await api.post(endpoints.uploadProfileImage, file, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
     } catch (err) {
       throw err;
     }

@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import imageService from "@/api/services/imageService";
+import usersService from "@/api/services/usersService";
+import { notification } from "@/notification";
+import React, { useEffect, useState } from "react";
 
-const UserSettings = ({ userProfile }) => {
+const UserSettings = ({ userProfile, setLoading, LoadUserProfile }) => {
   const [imageBase64, setImageBase64] = useState(userProfile.avatar && userProfile.avatar.small);
+  const [file, setFile] = useState(null)
 
   const [name, setname] = useState(userProfile.name);
   const [bio, setbio] = useState(userProfile.bio || "");
-  const [avatar, setavatar] = useState(userProfile.avatar && userProfile.avatar.small );
   const [username, setusername] = useState(userProfile.username);
 
-  console.log(name, bio, username, avatar);
-  
+  const HandleUploadtoServer = async (file) => {
+    if (!file) {
+      return;
+    }
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+      const image_data = await imageService.uploadProfile(formData)
+      return image_data.urls
+    } catch (err) {
+      notification.error("file yuklab bolmadi")
+    }
+  }
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -20,18 +34,40 @@ const UserSettings = ({ userProfile }) => {
 
     reader.onload = () => {
       setImageBase64(reader.result);
-      uploadToServer(reader.result);
+      setFile(file)
     };
+
 
     reader.onerror = (error) => {
       console.error("Error converting image to Base64:", error);
     };
   };
 
+  const handleUpadteProfile = async (e) => {
+    setLoading(true)
+    e.preventDefault()
+    try {
+      const urls = await HandleUploadtoServer(file)
+      const data = {
+        username,
+        name,
+        avatar: urls,
+        bio
+      }
+      
+      await usersService.updateUser(userProfile._id, data)
+      notification.success("pro'fil yangilandi")
+
+    } catch (err) {
+      notification.error("pro'fil o'zgartirib bolmadi, keyinroq urunib koring")
+    }
+    setLoading(false)
+  }
+
   return (
     <div className="flex-1 bg-white rounded-3xl border p-5">
       <h2 className="text-xl mb-5">Malumotlarni sozlash</h2>
-      <form className="space-y-5">
+      <form className="space-y-5" onSubmit={handleUpadteProfile}>
         <div className="w-full space-y-1">
           <p>Profil uchun rasm*</p>
           <label

@@ -20,18 +20,20 @@ const Profile = () => {
     navigate("/login");
   }
 
+  const LoadUserProfile = async () => {
+    setLoading(true);
+    authService
+      .getUserProfile()
+      .then((data) => {
+        setUserProfile(data);
+        console.log("Updated User Data:", data);
+      })
+      .catch(() => notification.error("Server tomonidan hato"))
+      .finally(() => setLoading(false));
+  };
+
   if (token) {
     useEffect(() => {
-      const LoadUserProfile = async () => {
-        setLoading(true);
-        authService
-          .getUserProfile()
-          .then((data) => {
-            setUserProfile(data);
-          })
-          .catch(() => notification.error("Server tomonidan hato"))
-          .finally(() => setLoading(false));
-      };
       LoadUserProfile();
     }, []);
   }
@@ -94,7 +96,7 @@ const Profile = () => {
               </button>
             </div>
           </div>
-          <UserSettings userProfile={userProfile} />
+          <UserSettings userProfile={userProfile} setLoading={setLoading} LoadUserProfile={LoadUserProfile} />
         </div>
       </div>
     </div>
