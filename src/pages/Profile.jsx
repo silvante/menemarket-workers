@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // Toaster (For notification)
 import { notification } from "../notification";
+import PageLoader from "../components/PageLoader";
 
 // Services
 import authService from "@/api/services/authService";
@@ -21,7 +22,7 @@ const Profile = () => {
   if (token) {
     useEffect(() => {
       const LoadUserProfile = async () => {
-        setLoading(true)
+        setLoading(true);
         authService
           .getUserProfile()
           .then((data) => {
@@ -30,7 +31,7 @@ const Profile = () => {
           .catch(() => notification.error("Server tomonidan hato"))
           .finally(() => setLoading(false));
       };
-      LoadUserProfile()
+      LoadUserProfile();
     }, []);
   }
 
@@ -47,6 +48,10 @@ const Profile = () => {
       }
     );
   };
+
+  if (loading) {
+    return <PageLoader />;
+  }
 
   return (
     <div className="py-8">
