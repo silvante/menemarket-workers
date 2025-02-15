@@ -7,6 +7,7 @@ import PageLoader from "../components/PageLoader";
 
 // Services
 import authService from "@/api/services/authService";
+import UserSettings from "@/components/UserSettings";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -57,26 +58,34 @@ const Profile = () => {
     <div className="py-8">
       <div className="container">
         <h1 className="text-2xl mb-5">Ishchi hisobi malumotlari</h1>
-        <div className="w-full flex justify-between items-start">
+        <div className="w-full flex justify-between items-start gap-5">
           <div className="w-96 bg-white p-5 border rounded-3xl">
             <div className="overflow-hidden rounded-full h-56 w-56 my-5 mx-auto bg-gray-300">
-              {
-                userProfile.avatar && userProfile.avatar.original ? (
-                  <Link to={"/settings"} className="w-full h-full">
-                    <img src={userProfile.avatar.original} alt={userProfile.name} className="w-full h-full" />
-                  </Link>
-                ) : (
-                  <Link to={"/settings"}>
-                    <div className="w-full h-full flex items-center justify-center">
-                        <i className='bx bx-user-circle text-8xl text-gray-500'></i>
-                    </div>
-                  </Link>
-                )
-              }
+              {userProfile.avatar && userProfile.avatar.original ? (
+                <Link to={"/settings"} className="w-full h-full">
+                  <img
+                    src={userProfile.avatar.original}
+                    alt={userProfile.name}
+                    className="w-full h-full"
+                  />
+                </Link>
+              ) : (
+                <Link to={"/settings"}>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <i className="bx bx-user-circle text-8xl text-gray-500"></i>
+                  </div>
+                </Link>
+              )}
             </div>
             <div className="w-full text-center">
               <h3 className="font-semibold text-xl">{userProfile.name}</h3>
-              <p><span className="font-semibold">Ishchi statusi: </span>{userProfile.status}</p>
+              <p>
+                <span className="font-semibold">Ishchi statusi: </span>
+                {userProfile.status}
+              </p>
+              <p>
+                <span className="font-semibold">@{userProfile.username}</span>
+              </p>
               <button
                 onClick={handleLogout}
                 className="text-white text-lg font-medium bg-primary-default py-2 px-5 rounded-xl my-5"
@@ -85,6 +94,7 @@ const Profile = () => {
               </button>
             </div>
           </div>
+          <UserSettings userProfile={userProfile} />
         </div>
       </div>
     </div>
