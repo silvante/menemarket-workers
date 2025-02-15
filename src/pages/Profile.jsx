@@ -78,7 +78,7 @@ const Profile = () => {
               )}
             </div>
             <div className="w-full text-center">
-              <h3 className="font-semibold text-xl">{userProfile.name}</h3>
+              <h3 className="font-semibold text-2xl w-full truncate">{userProfile.name}</h3>
               <p>
                 <span className="font-semibold">Ishchi statusi: </span>
                 {userProfile.status}
@@ -88,7 +88,7 @@ const Profile = () => {
               </p>
               <button
                 onClick={handleLogout}
-                className="text-white text-lg font-medium bg-primary-default py-2 px-5 rounded-xl my-5"
+                className="btn-primary py-2 px-5 mx-auto my-5"
               >
                 Hisobni tark etish
               </button>

@@ -29,8 +29,8 @@ const UserSettings = ({userProfile}) => {
 
   return (
     <div className='flex-1 bg-white rounded-3xl border p-5'>
-        <h2 className='text-xl'>Malumotlarni sozlash</h2>
-        <form>
+        <h2 className='text-xl mb-5'>Malumotlarni sozlash</h2>
+        <form className='space-y-5'>
           <div className='w-full space-y-1'>
             <p>Profil uchun rasm*</p>
             <label htmlFor="base64" className='bg-gray-300 w-24 h-24 flex items-center justify-center rounded-xl overflow-hidden'>
@@ -42,7 +42,25 @@ const UserSettings = ({userProfile}) => {
                 )
               }
             </label>
-            <input type="file" name="file" id='base64' accept='image/*' onChange={handleImageUpload} className='hidden' />
+            <input type="file" id='base64' accept='image/*' onChange={handleImageUpload} className='hidden' />
+          </div>
+          <div className='w-full space-y-1'>
+            <label htmlFor="bio">Shaxsiy bio*</label>
+            <input type="text" id="bio" className='bg-gray-200 border outline-none py-3 px-5' placeholder='maximum 225 ta harf' />
+          </div>
+          <div className='flex gap-5'>
+            <div className='flex-1 space-y-1'>
+              <label htmlFor="name">ismni taxrirlash*</label>
+              <input type="text" id="name" className='bg-gray-200 border outline-none py-3 px-5' placeholder='maximum 225 ta harf' />
+            </div>
+            <div className='flex-1 space-y-1'>
+              <label htmlFor="username">foidalanuvchi nomini taxrirlash*</label>
+              <input type="text" id="username" className='bg-gray-200 border outline-none py-3 px-5' placeholder='maximum 225 ta harf' />
+            </div>
+          </div>
+          <div className='flex flex-col justify-start space-y-1'>
+            <label>malumotlarni saqlash*</label>
+            <button type='submit' className='btn-primary py-2 px-5 w-56'>O'zgarishlarni saqlash</button>
           </div>
         </form>
     </div>
