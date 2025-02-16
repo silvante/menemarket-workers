@@ -9,7 +9,7 @@ const ProfileFetcherCard = () => {
   }
   const avatar = userData.avatar && userData.avatar.small;
   return (
-    <div className="w-96 bg-white p-5 border rounded-3xl">
+    <div className="w-96 bg-white p-5 border rounded-3xl sticky top-20">
       <div className="w-full flex gap-5 items-center">
         <div className="w-14 h-14 border rounded-full overflow-hidden">
           {avatar ? (
