@@ -33,8 +33,8 @@ const Profile = ({ setLoader }) => {
   };
 
   return (
-    <div className="py-8">
-      <div className="container">
+    <div className="mx-auto xl:w-2/3 w-11/12 space-y-5 my-5">
+      <div>
         <h1 className="text-2xl mb-5">Ishchi hisobi ma'lumotlari</h1>
         <div className="w-full flex justify-between items-start gap-5">
           <div className="w-96 bg-white p-5 border rounded-3xl">
