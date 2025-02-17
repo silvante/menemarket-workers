@@ -29,13 +29,11 @@ const Home = () => {
   }, [LoadLatestNews]);
 
   const news = useSelector((state) => state.news.data);
-  console.log(news);
-  
 
   return (
     <div className="mx-auto xl:w-2/3 w-11/12 space-y-5 my-5">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">Asosiy sahifa</h1>
+        <h1 className="text-2xl font-semibold">Bosh sahifa</h1>
       </div>
       <div className="w-full flex justify-between items-start gap-5">
         <ProfileFetcherCard />
@@ -71,6 +69,10 @@ const Home = () => {
             )
           }
         </div>
+      </div>
+      <div className="w-full py-10 text-center">
+          <p className="font-medium text-lg">mene_market company ishchilar paneli <i className='bx bx-registered'></i></p>
+          <p>Web sahifa mene market companiyasi ishchilari uchun ish paneli sifatida ishlab chiqilgan.</p>
       </div>
     </div>
   );
